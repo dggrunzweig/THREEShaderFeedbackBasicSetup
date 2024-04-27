@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-import fb_fragment from './fb_fragment.ts';
+import fb_fragment from './fb_fragment.js';
 
 const clock = new THREE.Clock();
 const scene = new THREE.Scene();
@@ -8,15 +8,15 @@ const in_scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 2);
 
 const renderer = new THREE.WebGLRenderer();
-let material_in: THREE.ShaderMaterial;
-let material_out: THREE.MeshBasicMaterial;
+let material_in;//: THREE.ShaderMaterial;
+let material_out;//: THREE.MeshBasicMaterial;
 
 let textureA = new THREE.WebGLRenderTarget(
-    window.innerWidth, window.innerHeight,
-    {minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter});
+  window.innerWidth, window.innerHeight,
+  { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter });
 let textureB = new THREE.WebGLRenderTarget(
-    window.innerWidth, window.innerHeight,
-    {minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter});
+  window.innerWidth, window.innerHeight,
+  { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter });
 
 const initial_texture = new THREE.TextureLoader().load('./circles.jpg');
 
@@ -24,19 +24,19 @@ function sceneSetup() {
   // initial texture
   const plane_in = new THREE.PlaneGeometry(2, 2);
   const uniforms_input = {
-    u_in_buffer: {value: textureA.texture},
-    u_init_buffer: {value: initial_texture},
+    u_in_buffer: { value: textureA.texture },
+    u_init_buffer: { value: initial_texture },
     u_resolution:
-        {value: new THREE.Vector2(window.innerWidth, window.innerHeight)},
-    u_time: {value: 0.},
+      { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+    u_time: { value: 0. },
   };
   material_in = new THREE.ShaderMaterial(
-      {uniforms: uniforms_input, fragmentShader: fb_fragment});
+    { uniforms: uniforms_input, fragmentShader: fb_fragment });
   const mesh_init = new THREE.Mesh(plane_in, material_in);
   in_scene.add(mesh_init);
 
   const plane_out = new THREE.PlaneGeometry(2, 2);
-  material_out = new THREE.MeshBasicMaterial({map: initial_texture});
+  material_out = new THREE.MeshBasicMaterial({ map: initial_texture });
   const mesh_out = new THREE.Mesh(plane_out, material_out);
   scene.add(mesh_out);
 
