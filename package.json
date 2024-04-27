@@ -1,0 +1,17 @@
+{
+  "name": "basic-feedback",
+  "version": "1.0.0",
+  "description": "example of shader feedback with glsl and three.js",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/three": "^0.164.0",
+    "three": "^0.164.1"
+  }
+}
